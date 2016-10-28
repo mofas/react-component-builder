@@ -1,0 +1,30 @@
+
+
+.app-container{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .navbar{
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+  }
+
+  .main-content{
+    flex: 1;
+    height: 100%;
+    display: flex;
+  }
+
+  .panel-section{
+    width: 240px;
+    padding: 20px;
+    background-color: #eee;
+  }
+
+  .code-generator-section{
+    padding: 20px;
+  }
+
+}
