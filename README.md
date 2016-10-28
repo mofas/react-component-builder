@@ -26,8 +26,6 @@ elm package install
 
 ## Development
 
-Make sure mongod is running, then:
-
 ```
 npm start
 ```
