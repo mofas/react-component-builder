@@ -1,6 +1,13 @@
 
 module Modal.Main exposing (..)
 
+type alias Model =
+  { componetType : TypeOptionList
+  , lifeCycle : TypeOptionList
+  , pure : TypeOptionList
+  , importLib: TypeOptionList
+  }
+
 type alias TypeOptionList = List TypeOption
 
 type alias TypeOption =
@@ -12,11 +19,21 @@ componetType : TypeOptionList
 componetType =
   [
     {
-      label = "Object Component"
+      label = "Object"
     , enabled = False
     }
   , {
-      label = "Class Component"
+      label = "Class"
+    , enabled = False
+    }
+  ]
+
+
+pure : TypeOptionList
+pure =
+  [
+    {
+      label = "Yes"
     , enabled = False
     }
   ]
@@ -59,14 +76,6 @@ lifeCycle =
     }
   ]
 
-pure : TypeOptionList
-pure =
-  [
-    {
-      label = "Pure Rendering"
-    , enabled = False
-    }
-  ]
 
 
 importLib : TypeOptionList
