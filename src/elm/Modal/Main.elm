@@ -14,17 +14,20 @@ type alias TypeOptionList =
 
 
 type alias TypeOption =
-    { label : String
+    { key : String
+    , label : String
     , enabled : Bool
     }
 
 
 componetType : TypeOptionList
 componetType =
-    [ { label = "Object"
+    [ { key = "Object"
+      , label = "Object"
       , enabled = False
       }
-    , { label = "Class"
+    , { key = "Class"
+      , label = "Class"
       , enabled = False
       }
     ]
@@ -32,7 +35,8 @@ componetType =
 
 pure : TypeOptionList
 pure =
-    [ { label = "Yes"
+    [ { key = "Yes"
+      , label = "Yes"
       , enabled = False
       }
     ]
@@ -40,28 +44,36 @@ pure =
 
 lifeCycle : TypeOptionList
 lifeCycle =
-    [ { label = "defaultProps"
+    [ { key = "defaultProps"
+      , label = "defaultProps"
       , enabled = False
       }
-    , { label = "componentWillMount"
+    , { key = "componentWillMount"
+      , label = "componentWillMount"
       , enabled = False
       }
-    , { label = "componentDidMount"
+    , { key = "componentDidMount"
+      , label = "componentDidMount"
       , enabled = False
       }
-    , { label = "componentWillReceiveProps"
+    , { key = "componentWillReceiveProps"
+      , label = "componentWillReceiveProps"
       , enabled = False
       }
-    , { label = "shouldComponentUpdate"
+    , { key = "shouldComponentUpdate"
+      , label = "shouldComponentUpdate"
       , enabled = False
       }
-    , { label = "componentWillUpdate"
+    , { key = "componentWillUpdate"
+      , label = "componentWillUpdate"
       , enabled = False
       }
-    , { label = "componentDidUpdate"
+    , { key = "componentDidUpdate"
+      , label = "componentDidUpdate"
       , enabled = False
       }
-    , { label = "componentWillUnmount"
+    , { key = "componentWillUnmount"
+      , label = "componentWillUnmount"
       , enabled = False
       }
     ]

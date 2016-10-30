@@ -23,10 +23,18 @@ type Msg
 
 
 update : Msg -> Model -> Model
-update message model =
+update message typeOptionList =
     case message of
         ToggleBtnMsg subMsg ->
-            model
+            let
+                updater target =
+                    if target.key == "FIX_ME" then
+                        Components.ToggleableBtn.update subMsg target
+                    else
+                        target
+            in
+                List.map updater
+                    typeOptionList
 
 
 
