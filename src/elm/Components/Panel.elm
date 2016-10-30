@@ -1,8 +1,8 @@
 module Components.Panel exposing (..)
 
 import Html.App
-import Modal.Main exposing (Model, TypeOptionList, TypeOption)
-import Components.ToggleableBtn exposing (Msg, toggleableBtn)
+import Modal.Main exposing (AppModel)
+import Components.ToggleableBtnGroup exposing (toggleableBtnGroup)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
@@ -11,54 +11,50 @@ import Html.Attributes exposing (..)
 
 
 type Msg
-    = ToggleBtnMsg Components.ToggleableBtn.Msg
+    = ToggleableBtnGroup Components.ToggleableBtnGroup.Msg
 
 
-panel : Model -> Html Msg
+
+-- update
+
+
+update : Msg -> AppModel -> AppModel
+update msg model =
+    case msg of
+        ToggleableBtnGroup subMsg ->
+            model
+
+
+
+-- View
+
+
+panel : AppModel -> Html Msg
 panel model =
-    let
-        btnGroupGenerator =
-            List.map (\x -> (Html.App.map ToggleBtnMsg (toggleableBtn x)))
-
-        componetTypeBtnGroup =
-            btnGroupGenerator model.componetType
-
-        pureBtnGroup =
-            btnGroupGenerator model.pure
-
-        lifeCycleBtnGroup =
-            btnGroupGenerator model.lifeCycle
-    in
-        div
-            [ class "panel-section" ]
+    div
+        [ class "panel-section" ]
+        [ div
+            [ class "type-group" ]
             [ div
-                [ class "type-group" ]
-                [ div
-                    [ class "group-title" ]
-                    [ text "Create component by"
-                    ]
-                , div
-                    [ class "btn-group" ]
-                    componetTypeBtnGroup
+                [ class "group-title" ]
+                [ text "Create component by"
                 ]
-            , div
-                [ class "type-group" ]
-                [ div
-                    [ class "group-title" ]
-                    [ text "Is component pure?"
-                    ]
-                , div
-                    [ class "btn-group" ]
-                    pureBtnGroup
-                ]
-            , div
-                [ class "type-group" ]
-                [ div
-                    [ class "group-title" ]
-                    [ text "Life cycle"
-                    ]
-                , div
-                    [ class "btn-group" ]
-                    lifeCycleBtnGroup
-                ]
+            , Html.App.map ToggleableBtnGroup (toggleableBtnGroup model.componetType)
             ]
+        , div
+            [ class "type-group" ]
+            [ div
+                [ class "group-title" ]
+                [ text "Is component pure?"
+                ]
+            , Html.App.map ToggleableBtnGroup (toggleableBtnGroup model.pure)
+            ]
+        , div
+            [ class "type-group" ]
+            [ div
+                [ class "group-title" ]
+                [ text "Life cycle"
+                ]
+            , Html.App.map ToggleableBtnGroup (toggleableBtnGroup model.lifeCycle)
+            ]
+        ]

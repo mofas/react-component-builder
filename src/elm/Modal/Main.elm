@@ -1,7 +1,7 @@
 module Modal.Main exposing (..)
 
 
-type alias Model =
+type alias AppModel =
     { componetType : TypeOptionList
     , lifeCycle : TypeOptionList
     , pure : TypeOptionList

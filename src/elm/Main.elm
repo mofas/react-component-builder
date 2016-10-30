@@ -3,7 +3,7 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.App
-import Modal.Main exposing (Model, TypeOptionList, componetType, lifeCycle, pure, importLib)
+import Modal.Main exposing (AppModel)
 import Components.Layout exposing (layout)
 import Components.Panel exposing (..)
 import Components.CodeGenerator exposing (codeGenerator)
@@ -15,7 +15,7 @@ import Components.CodeGenerator exposing (codeGenerator)
 main : Program Never
 main =
     Html.App.beginnerProgram
-        { model = model
+        { model = appModel
         , view = view
         , update = update
         }
@@ -25,12 +25,12 @@ main =
 -- MODEL
 
 
-model : Model
-model =
-    { componetType = componetType
-    , pure = pure
-    , lifeCycle = lifeCycle
-    , importLib = importLib
+appModel : AppModel
+appModel =
+    { componetType = Modal.Main.componetType
+    , pure = Modal.Main.pure
+    , lifeCycle = Modal.Main.lifeCycle
+    , importLib = Modal.Main.importLib
     }
 
 
@@ -39,17 +39,13 @@ model =
 
 
 type Msg
-    = NoOp
-    | PanelMsg Components.Panel.Msg
+    = PanelMsg Components.Panel.Msg
 
 
-update : Msg -> Model -> Model
+update : Msg -> AppModel -> AppModel
 update msg model =
     case msg of
-        NoOp ->
-            model
-
-        PanelMsg ab ->
+        PanelMsg subMsg ->
             model
 
 
@@ -57,7 +53,7 @@ update msg model =
 -- VIEW
 
 
-view : Model -> Html Msg
+view : AppModel -> Html Msg
 view model =
     layout
         (div [ class "main-content" ]
