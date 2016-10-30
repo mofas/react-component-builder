@@ -8,6 +8,13 @@ import Html.Attributes exposing (..)
 
 
 -- MODEL
+
+
+type alias Model =
+    TypeOptionList
+
+
+
 -- UPDATE
 
 
@@ -15,7 +22,7 @@ type Msg
     = ToggleBtnMsg Components.ToggleableBtn.Msg
 
 
-update : Msg -> TypeOptionList -> TypeOptionList
+update : Msg -> Model -> Model
 update message model =
     case message of
         ToggleBtnMsg subMsg ->
@@ -26,7 +33,7 @@ update message model =
 -- View
 
 
-toggleableBtnGroup : TypeOptionList -> Html Msg
+toggleableBtnGroup : Model -> Html Msg
 toggleableBtnGroup model =
     let
         btnGroup =
