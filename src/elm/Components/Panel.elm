@@ -3,6 +3,7 @@ module Components.Panel exposing (..)
 import Html.App
 import Modal.Main exposing (AppModel)
 import Components.ToggleableBtnGroup exposing (toggleableBtnGroup)
+import Components.RadioBtnGroup exposing (radioBtnGroup)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
@@ -11,7 +12,7 @@ import Html.Attributes exposing (..)
 
 
 type Msg
-    = ToggleableComponentTypeBtnGroup Components.ToggleableBtnGroup.Msg
+    = RadioComponentTypeBtnGroup Components.RadioBtnGroup.Msg
     | ToggleablePureBtnGroup Components.ToggleableBtnGroup.Msg
     | ToggleableLifeCycleBtnGroup Components.ToggleableBtnGroup.Msg
 
@@ -23,8 +24,8 @@ type Msg
 update : Msg -> AppModel -> AppModel
 update msg model =
     case msg of
-        ToggleableComponentTypeBtnGroup subMsg ->
-            { model | componetType = Components.ToggleableBtnGroup.update subMsg model.componetType }
+        RadioComponentTypeBtnGroup subMsg ->
+            { model | componetType = Components.RadioBtnGroup.update subMsg model.componetType }
 
         ToggleablePureBtnGroup subMsg ->
             { model | pure = Components.ToggleableBtnGroup.update subMsg model.pure }
@@ -47,7 +48,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Create component by"
                 ]
-            , Html.App.map ToggleableComponentTypeBtnGroup (toggleableBtnGroup model.componetType)
+            , Html.App.map RadioComponentTypeBtnGroup (radioBtnGroup model.componetType)
             ]
         , div
             [ class "type-group" ]
