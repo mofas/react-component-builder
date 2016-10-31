@@ -2,7 +2,7 @@ module Components.ToggleableBtnGroup exposing (..)
 
 import Html.App
 import Components.ToggleableBtn exposing (toggleableBtn)
-import Modal.Main exposing (TypeOptionList)
+import Modal.Main exposing (TypeOptionId, TypeOptionList)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
@@ -19,16 +19,16 @@ type alias Model =
 
 
 type Msg
-    = ToggleBtnMsg Components.ToggleableBtn.Msg
+    = ToggleBtnMsg TypeOptionId Components.ToggleableBtn.Msg
 
 
 update : Msg -> Model -> Model
 update message typeOptionList =
     case message of
-        ToggleBtnMsg subMsg ->
+        ToggleBtnMsg id subMsg ->
             let
                 updater target =
-                    if target.key == "FIX_ME" then
+                    if target.id == id then
                         Components.ToggleableBtn.update subMsg target
                     else
                         target
@@ -45,7 +45,7 @@ toggleableBtnGroup : Model -> Html Msg
 toggleableBtnGroup model =
     let
         btnGroup =
-            List.map (\x -> (Html.App.map ToggleBtnMsg (toggleableBtn x))) model
+            List.map (\x -> (Html.App.map (ToggleBtnMsg x.id) (toggleableBtn x))) model
     in
         div
             [ class "btn-group" ]
