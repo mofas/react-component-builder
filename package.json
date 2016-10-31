@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "start": "babel-node server.js"
+    "start": "babel-node server.js",
+    "compile": "webpack --config ./config/webpack.dist.babel.js"
   },
   "dependencies": {
     "autoprefixer": "^6.5.1",

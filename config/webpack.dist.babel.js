@@ -7,7 +7,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 const config = {
 
   entry: {
-    app: path.join( __dirname, 'src/static/index.js' ),
+    app: path.join( __dirname, '../src/static/index.js' ),
   },
 
   output: {
