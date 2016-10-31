@@ -29,11 +29,11 @@ type alias TypeOption =
 
 componetType : TypeOptionList
 componetType =
-    [ { id = "Object"
+    [ { id = "object"
       , label = "Object"
       , enabled = True
       }
-    , { id = "Class"
+    , { id = "class"
       , label = "Class"
       , enabled = False
       }

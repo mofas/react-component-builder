@@ -6,7 +6,7 @@ import Html.App
 import Modal.Main exposing (..)
 import Components.Layout exposing (layout)
 import Components.Panel exposing (..)
-import Components.CodeGenerator exposing (codeGenerator)
+import Components.CodeGenerator exposing (..)
 
 
 -- APP
@@ -43,6 +43,7 @@ appModel =
 
 type Msg
     = PanelMsg Components.Panel.Msg
+    | CodeGeneratorMsg Components.CodeGenerator.Msg
 
 
 update : Msg -> AppModel -> AppModel
@@ -50,6 +51,9 @@ update msg model =
     case msg of
         PanelMsg subMsg ->
             Components.Panel.update subMsg model
+
+        CodeGeneratorMsg subMsg ->
+            model
 
 
 
@@ -61,6 +65,6 @@ view model =
     layout
         (div [ class "main-content" ]
             [ Html.App.map PanelMsg (Components.Panel.panel model)
-            , codeGenerator model
+            , Html.App.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model)
             ]
         )
