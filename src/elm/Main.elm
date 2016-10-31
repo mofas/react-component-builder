@@ -46,7 +46,7 @@ update : Msg -> AppModel -> AppModel
 update msg model =
     case msg of
         PanelMsg subMsg ->
-            model
+            Components.Panel.update subMsg model
 
 
 

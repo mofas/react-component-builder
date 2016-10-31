@@ -23,5 +23,5 @@ new WebpackDevServer(compiler, serverOptions).listen(PORT, HOST, err => {
     return;
   }
 
-  console.log(`Listening at ${ HOST }:${ PORT }`);
+  console.log(`Listening at http://${ HOST }:${ PORT }`);
 });

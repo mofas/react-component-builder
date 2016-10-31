@@ -1,5 +1,7 @@
 module Components.ToggleableBtn exposing (..)
 
+-- import Debug exposing (..)
+
 import Html.Events exposing (onClick)
 import Modal.Main exposing (TypeOption)
 import Html exposing (..)

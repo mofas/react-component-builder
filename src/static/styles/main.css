@@ -57,6 +57,11 @@
     user-select: none;
     text-decoration: none;
     color: #333;
+    &.enabled{
+      border: 1px solid #ccc;
+      background-color: #ddd;
+      color: #222;
+    }
   }
 
   .btn-group{

@@ -28,7 +28,7 @@ componetType : TypeOptionList
 componetType =
     [ { id = "Object"
       , label = "Object"
-      , enabled = False
+      , enabled = True
       }
     , { id = "Class"
       , label = "Class"

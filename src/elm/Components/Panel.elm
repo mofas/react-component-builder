@@ -11,7 +11,9 @@ import Html.Attributes exposing (..)
 
 
 type Msg
-    = ToggleableBtnGroup Components.ToggleableBtnGroup.Msg
+    = ToggleableComponentTypeBtnGroup Components.ToggleableBtnGroup.Msg
+    | ToggleablePureBtnGroup Components.ToggleableBtnGroup.Msg
+    | ToggleableLifeCycleBtnGroup Components.ToggleableBtnGroup.Msg
 
 
 
@@ -21,8 +23,14 @@ type Msg
 update : Msg -> AppModel -> AppModel
 update msg model =
     case msg of
-        ToggleableBtnGroup subMsg ->
-            model
+        ToggleableComponentTypeBtnGroup subMsg ->
+            { model | componetType = Components.ToggleableBtnGroup.update subMsg model.componetType }
+
+        ToggleablePureBtnGroup subMsg ->
+            { model | pure = Components.ToggleableBtnGroup.update subMsg model.pure }
+
+        ToggleableLifeCycleBtnGroup subMsg ->
+            { model | lifeCycle = Components.ToggleableBtnGroup.update subMsg model.lifeCycle }
 
 
 
@@ -39,7 +47,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Create component by"
                 ]
-            , Html.App.map ToggleableBtnGroup (toggleableBtnGroup model.componetType)
+            , Html.App.map ToggleableComponentTypeBtnGroup (toggleableBtnGroup model.componetType)
             ]
         , div
             [ class "type-group" ]
@@ -47,7 +55,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Is component pure?"
                 ]
-            , Html.App.map ToggleableBtnGroup (toggleableBtnGroup model.pure)
+            , Html.App.map ToggleablePureBtnGroup (toggleableBtnGroup model.pure)
             ]
         , div
             [ class "type-group" ]
@@ -55,6 +63,6 @@ panel model =
                 [ class "group-title" ]
                 [ text "Life cycle"
                 ]
-            , Html.App.map ToggleableBtnGroup (toggleableBtnGroup model.lifeCycle)
+            , Html.App.map ToggleableLifeCycleBtnGroup (toggleableBtnGroup model.lifeCycle)
             ]
         ]
