@@ -2,6 +2,8 @@
 
 #WIP
 
+**[Demo](https://mofas.github.io/react-component-builder/dist/)**
+
 ## Setup
 
 ### Dependencies
@@ -29,5 +31,3 @@ elm package install
 ```
 npm start
 ```
-
-
