@@ -5,7 +5,10 @@ type alias AppModel =
     { componetType : TypeOptionList
     , lifeCycle : TypeOptionList
     , pure : TypeOptionList
-    , importLib : TypeOptionList
+    , importCSS : TypeOptionList
+    , importLibImmutableJS : TypeOptionList
+    , importLibReactRouter : TypeOptionList
+    , importLibRedux : TypeOptionList
     }
 
 
@@ -83,6 +86,57 @@ lifeCycle =
     ]
 
 
-importLib : TypeOptionList
-importLib =
-    []
+importCSS : TypeOptionList
+importCSS =
+    [ { id = "Normal CSS"
+      , label = "Normal CSS"
+      , enabled = False
+      }
+    , { id = "Classname"
+      , label = "Classname"
+      , enabled = False
+      }
+    , { id = "CSS Module"
+      , label = "CSS Module"
+      , enabled = False
+      }
+    ]
+
+
+importLibImmutableJS : TypeOptionList
+importLibImmutableJS =
+    [ { id = "fromJS"
+      , label = "fromJS"
+      , enabled = False
+      }
+    , { id = "Map"
+      , label = "Map"
+      , enabled = False
+      }
+    , { id = "List"
+      , label = "List"
+      , enabled = False
+      }
+    , { id = "Set"
+      , label = "Set"
+      , enabled = False
+      }
+    ]
+
+
+importLibReactRouter : TypeOptionList
+importLibReactRouter =
+    [ { id = "Link"
+      , label = "Link"
+      , enabled = False
+      }
+    ]
+
+
+importLibRedux : TypeOptionList
+importLibRedux =
+    [ { id = "Connect"
+      , label = "Connect"
+      , enabled = False
+      }
+    ]

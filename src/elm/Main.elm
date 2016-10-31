@@ -3,7 +3,7 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.App
-import Modal.Main exposing (AppModel)
+import Modal.Main exposing (..)
 import Components.Layout exposing (layout)
 import Components.Panel exposing (..)
 import Components.CodeGenerator exposing (codeGenerator)
@@ -27,10 +27,13 @@ main =
 
 appModel : AppModel
 appModel =
-    { componetType = Modal.Main.componetType
-    , pure = Modal.Main.pure
-    , lifeCycle = Modal.Main.lifeCycle
-    , importLib = Modal.Main.importLib
+    { componetType = componetType
+    , pure = pure
+    , lifeCycle = lifeCycle
+    , importCSS = importCSS
+    , importLibImmutableJS = importLibImmutableJS
+    , importLibReactRouter = importLibReactRouter
+    , importLibRedux = importLibRedux
     }
 
 
