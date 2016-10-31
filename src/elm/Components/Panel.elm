@@ -15,6 +15,10 @@ type Msg
     = RadioComponentTypeBtnGroup Components.RadioBtnGroup.Msg
     | ToggleablePureBtnGroup Components.ToggleableBtnGroup.Msg
     | ToggleableLifeCycleBtnGroup Components.ToggleableBtnGroup.Msg
+    | ToggleableImportCSSBtnGroup Components.ToggleableBtnGroup.Msg
+    | ToggleableImportImmutableBtnGroup Components.ToggleableBtnGroup.Msg
+    | ToggleableImportReactRouterBtnGroup Components.ToggleableBtnGroup.Msg
+    | ToggleableImportReduxBtnGroup Components.ToggleableBtnGroup.Msg
 
 
 
@@ -32,6 +36,18 @@ update msg model =
 
         ToggleableLifeCycleBtnGroup subMsg ->
             { model | lifeCycle = Components.ToggleableBtnGroup.update subMsg model.lifeCycle }
+
+        ToggleableImportCSSBtnGroup subMsg ->
+            { model | importCSS = Components.ToggleableBtnGroup.update subMsg model.importCSS }
+
+        ToggleableImportImmutableBtnGroup subMsg ->
+            { model | importLibImmutableJS = Components.ToggleableBtnGroup.update subMsg model.importLibImmutableJS }
+
+        ToggleableImportReactRouterBtnGroup subMsg ->
+            { model | importLibReactRouter = Components.ToggleableBtnGroup.update subMsg model.importLibReactRouter }
+
+        ToggleableImportReduxBtnGroup subMsg ->
+            { model | importLibRedux = Components.ToggleableBtnGroup.update subMsg model.importLibRedux }
 
 
 
@@ -65,5 +81,37 @@ panel model =
                 [ text "Life cycle"
                 ]
             , Html.App.map ToggleableLifeCycleBtnGroup (toggleableBtnGroup model.lifeCycle)
+            ]
+        , div
+            [ class "type-group" ]
+            [ div
+                [ class "group-title" ]
+                [ text "Import CSS"
+                ]
+            , Html.App.map ToggleableImportCSSBtnGroup (toggleableBtnGroup model.importCSS)
+            ]
+        , div
+            [ class "type-group" ]
+            [ div
+                [ class "group-title" ]
+                [ text "Immutable JS"
+                ]
+            , Html.App.map ToggleableImportImmutableBtnGroup (toggleableBtnGroup model.importLibImmutableJS)
+            ]
+        , div
+            [ class "type-group" ]
+            [ div
+                [ class "group-title" ]
+                [ text "React Router"
+                ]
+            , Html.App.map ToggleableImportReactRouterBtnGroup (toggleableBtnGroup model.importLibReactRouter)
+            ]
+        , div
+            [ class "type-group" ]
+            [ div
+                [ class "group-title" ]
+                [ text "Redux"
+                ]
+            , Html.App.map ToggleableImportReduxBtnGroup (toggleableBtnGroup model.importLibRedux)
             ]
         ]
