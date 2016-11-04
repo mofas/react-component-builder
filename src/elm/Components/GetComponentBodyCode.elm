@@ -75,12 +75,11 @@ getDefaultPropCode isObjectClass =
 """
 
 
-getComponentWillMountCodeCode : Bool -> String
-getComponentWillMountCodeCode isObjectClass =
+propCodeGenerator : String -> Bool -> String
+propCodeGenerator props isObjectClass =
     let
         code =
-            """
-    componentWillMount() {
+            "\n    " ++ props ++ """() {
 
     }"""
     in
@@ -110,43 +109,43 @@ getComponentBody isObjectClass lifeCycleTypeOptionList =
 
         componentWillMountCode =
             if lifeCycleMap.componentWillMount then
-                getComponentWillMountCodeCode isObjectClass
+                propCodeGenerator "componentWillMount" isObjectClass
             else
                 ""
 
         componentDidMountCode =
             if lifeCycleMap.componentDidMount then
-                ""
+                propCodeGenerator "componentDidMount" isObjectClass
             else
                 ""
 
         componentWillReceivePropsCode =
             if lifeCycleMap.componentWillReceiveProps then
-                ""
+                propCodeGenerator "componentWillReceiveProps" isObjectClass
             else
                 ""
 
         shouldComponentUpdateCode =
             if lifeCycleMap.shouldComponentUpdate then
-                ""
+                propCodeGenerator "shouldComponentUpdate" isObjectClass
             else
                 ""
 
         componentWillUpdateCode =
             if lifeCycleMap.componentWillUpdate then
-                ""
+                propCodeGenerator "componentWillUpdate" isObjectClass
             else
                 ""
 
         componentDidUpdateCode =
             if lifeCycleMap.componentDidUpdate then
-                ""
+                propCodeGenerator "componentDidUpdate" isObjectClass
             else
                 ""
 
         componentWillUnmountCode =
             if lifeCycleMap.componentWillUnmount then
-                ""
+                propCodeGenerator "componentWillUnmount" isObjectClass
             else
                 ""
     in
