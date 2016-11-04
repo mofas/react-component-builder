@@ -137,6 +137,6 @@ codeGenerator model =
         div
             [ class "code-generator-section" ]
             [ textarea
-                [ class "code-snippet" ]
+                [ class "code-snippet", readonly True ]
                 [ text snippetCode ]
             ]
