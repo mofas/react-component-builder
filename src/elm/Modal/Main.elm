@@ -27,6 +27,13 @@ type alias TypeOption =
     }
 
 
+isKeyEnabledInOptionList : TypeOptionList -> String -> Bool
+isKeyEnabledInOptionList typeOptionList id =
+    typeOptionList
+        |> List.filter (\x -> x.id == id)
+        |> List.all (\x -> x.enabled == True)
+
+
 componetType : TypeOptionList
 componetType =
     [ { id = "object"
@@ -88,15 +95,15 @@ lifeCycle =
 
 importCSS : TypeOptionList
 importCSS =
-    [ { id = "Normal CSS"
-      , label = "Normal CSS"
+    [ { id = "importCss"
+      , label = "Import CSS"
       , enabled = False
       }
-    , { id = "Classname"
-      , label = "Classname"
+    , { id = "classname"
+      , label = "With classname lib"
       , enabled = False
       }
-    , { id = "CSS Module"
+    , { id = "cssModule"
       , label = "CSS Module"
       , enabled = False
       }

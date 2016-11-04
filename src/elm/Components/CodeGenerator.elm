@@ -4,17 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Modal.Main exposing (AppModel, TypeOptionList)
 import Components.GetComponentBodyCode exposing (getComponentBody)
-
-
-importReactDeclaration : String
-importReactDeclaration =
-    """import React from 'react';"""
-
-
-importPureRenderMixinDeclaration : String
-importPureRenderMixinDeclaration =
-    """
-import PureRenderMixin from 'react-addons-pure-render-mixin';"""
+import Components.GetImportDeclaration exposing (getImportDeclaration)
 
 
 objectComponentHeader : String
@@ -90,14 +80,6 @@ type Msg
 -- View
 
 
-getImportDeclaration : Bool -> Bool -> String
-getImportDeclaration isPure isObjectClass =
-    if isPure && isObjectClass then
-        importReactDeclaration ++ importPureRenderMixinDeclaration
-    else
-        importReactDeclaration
-
-
 getComponentHeader : Bool -> Bool -> String
 getComponentHeader isPure isObjectClass =
     if isObjectClass then
@@ -124,7 +106,13 @@ codeGenerator model =
                 |> List.all (\x -> x.enabled == True)
 
         importDeclaration =
-            getImportDeclaration isPure isObjectClass
+            getImportDeclaration
+                isPure
+                isObjectClass
+                model.importCSS
+                model.importLibImmutableJS
+                model.importLibReactRouter
+                model.importLibRedux
 
         componentHeader =
             getComponentHeader isPure isObjectClass

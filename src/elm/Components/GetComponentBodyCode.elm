@@ -1,6 +1,6 @@
 module Components.GetComponentBodyCode exposing (..)
 
-import Modal.Main exposing (TypeOptionList)
+import Modal.Main exposing (TypeOptionList, isKeyEnabledInOptionList)
 
 
 objeComponentctBody : String
@@ -33,18 +33,11 @@ type alias LifeCycleMap =
     }
 
 
-isKeyEnabledInOptionList : TypeOptionList -> String -> Bool
-isKeyEnabledInOptionList typeOptionList id =
-    typeOptionList
-        |> List.filter (\x -> x.id == id)
-        |> List.all (\x -> x.enabled == True)
-
-
 getLifeCycleMap : TypeOptionList -> LifeCycleMap
-getLifeCycleMap lifecycleList =
+getLifeCycleMap typeOptionList =
     let
         isKeyEnabled =
-            isKeyEnabledInOptionList lifecycleList
+            isKeyEnabledInOptionList typeOptionList
     in
         { defaultProps = (isKeyEnabled "defaultProps")
         , componentWillMount = (isKeyEnabled "componentWillMount")
