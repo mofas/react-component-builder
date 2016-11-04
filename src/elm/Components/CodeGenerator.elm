@@ -4,7 +4,7 @@ module Components.CodeGenerator exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Modal.Main exposing (AppModel)
+import Modal.Main exposing (AppModel, TypeOptionList)
 
 
 importReactDeclaration : String
@@ -36,11 +36,6 @@ objeComponentctBody : String
 objeComponentctBody =
     """
 
-  defaultProps(){
-    return {
-
-    }
-  }
 """
 
 
@@ -74,26 +69,24 @@ class ComponentName extends React.PureComponent {"""
 classComponentBody : String
 classComponentBody =
     """
-  constructor(props) {
-    super(props);
-  }
 
-  static defaultProps = {
+    constructor(props) {
+      super(props);
+    }
 
-  }
 """
 
 
 classComponentFooter : String
 classComponentFooter =
     """
-  render(){
-    const {props} = this;
+    render(){
+      const {props} = this;
 
-    return (
-      <div></div>
-    );
-  }
+      return (
+        <div></div>
+      );
+    }
 }"""
 
 
@@ -137,6 +130,131 @@ getComponentHeader isPure isObjectClass =
         classComponentHeader
 
 
+type alias LifeCycleMap =
+    { defaultProps : Bool
+    , componentWillMount : Bool
+    , componentDidMount : Bool
+    , componentWillReceiveProps : Bool
+    , shouldComponentUpdate : Bool
+    , componentWillUpdate : Bool
+    , componentDidUpdate : Bool
+    , componentWillUnmount : Bool
+    }
+
+
+isKeyEnabledInOptionList : TypeOptionList -> String -> Bool
+isKeyEnabledInOptionList typeOptionList id =
+    typeOptionList
+        |> List.filter (\x -> x.id == id)
+        |> List.all (\x -> x.enabled == True)
+
+
+getLifeCycleMap : TypeOptionList -> LifeCycleMap
+getLifeCycleMap lifecycleList =
+    let
+        isKeyEnabled =
+            isKeyEnabledInOptionList lifecycleList
+    in
+        { defaultProps = (isKeyEnabled "defaultProps")
+        , componentWillMount = (isKeyEnabled "componentWillMount")
+        , componentDidMount = (isKeyEnabled "componentDidMount")
+        , componentWillReceiveProps = (isKeyEnabled "componentWillReceiveProps")
+        , shouldComponentUpdate = (isKeyEnabled "shouldComponentUpdate")
+        , componentWillUpdate = (isKeyEnabled "componentWillUpdate")
+        , componentDidUpdate = (isKeyEnabled "componentDidUpdate")
+        , componentWillUnmount = (isKeyEnabled "componentWillUnmount")
+        }
+
+
+getDefaultPropCode : Bool -> String
+getDefaultPropCode isObjectClass =
+    if isObjectClass then
+        """
+    defaultProps(){
+      return {
+
+      }
+    },
+"""
+    else
+        """
+    static defaultProps = {
+
+    }
+"""
+
+
+getComponentBody : Bool -> TypeOptionList -> String
+getComponentBody isObjectClass lifeCycleTypeOptionList =
+    let
+        lifeCycleMap =
+            getLifeCycleMap lifeCycleTypeOptionList
+
+        code =
+            if isObjectClass then
+                objeComponentctBody
+            else
+                classComponentBody
+
+        defaultPropsCode =
+            if lifeCycleMap.defaultProps then
+                getDefaultPropCode isObjectClass
+            else
+                ""
+
+        componentWillMountCode =
+            if lifeCycleMap.componentWillMount then
+                ""
+            else
+                ""
+
+        componentDidMountCode =
+            if lifeCycleMap.componentDidMount then
+                ""
+            else
+                ""
+
+        componentWillReceivePropsCode =
+            if lifeCycleMap.componentWillReceiveProps then
+                ""
+            else
+                ""
+
+        shouldComponentUpdateCode =
+            if lifeCycleMap.shouldComponentUpdate then
+                ""
+            else
+                ""
+
+        componentWillUpdateCode =
+            if lifeCycleMap.componentWillUpdate then
+                ""
+            else
+                ""
+
+        componentDidUpdateCode =
+            if lifeCycleMap.componentDidUpdate then
+                ""
+            else
+                ""
+
+        componentWillUnmountCode =
+            if lifeCycleMap.componentWillUnmount then
+                ""
+            else
+                ""
+    in
+        code
+            ++ defaultPropsCode
+            ++ componentWillMountCode
+            ++ componentDidMountCode
+            ++ componentWillReceivePropsCode
+            ++ shouldComponentUpdateCode
+            ++ componentWillUpdateCode
+            ++ componentDidUpdateCode
+            ++ componentWillUnmountCode
+
+
 codeGenerator : AppModel -> Html Msg
 codeGenerator model =
     let
@@ -155,17 +273,20 @@ codeGenerator model =
         componentHeader =
             getComponentHeader isPure isObjectClass
 
+        componentBody =
+            getComponentBody isObjectClass model.lifeCycle
+
         snippetCode =
             if isObjectClass then
                 importDeclaration
                     ++ componentHeader
-                    ++ objeComponentctBody
+                    ++ componentBody
                     ++ objectComponentFooter
                     ++ exportDeclaration
             else
                 importDeclaration
                     ++ componentHeader
-                    ++ classComponentBody
+                    ++ componentBody
                     ++ classComponentFooter
                     ++ exportDeclaration
     in
