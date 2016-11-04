@@ -116,6 +116,27 @@ type Msg
 -- View
 
 
+getImportDeclaration : Bool -> Bool -> String
+getImportDeclaration isPure isObjectClass =
+    if isPure && isObjectClass then
+        importReactDeclaration ++ importPureRenderMixinDeclaration
+    else
+        importReactDeclaration
+
+
+getComponentHeader : Bool -> Bool -> String
+getComponentHeader isPure isObjectClass =
+    if isObjectClass then
+        if isPure then
+            objectComponentHeader ++ objeComponentPureMixin
+        else
+            objectComponentHeader
+    else if isPure then
+        pureClassComponentHeader
+    else
+        classComponentHeader
+
+
 codeGenerator : AppModel -> Html Msg
 codeGenerator model =
     let
@@ -129,32 +150,21 @@ codeGenerator model =
                 |> List.all (\x -> x.enabled == True)
 
         importDeclaration =
-            if isPure && isObjectClass then
-                importReactDeclaration ++ importPureRenderMixinDeclaration
-            else
-                importReactDeclaration
+            getImportDeclaration isPure isObjectClass
 
-        snippetHeader =
-            if isObjectClass then
-                if isPure then
-                    objectComponentHeader ++ objeComponentPureMixin
-                else
-                    objectComponentHeader
-            else if isPure then
-                pureClassComponentHeader
-            else
-                classComponentHeader
+        componentHeader =
+            getComponentHeader isPure isObjectClass
 
         snippetCode =
             if isObjectClass then
                 importDeclaration
-                    ++ snippetHeader
+                    ++ componentHeader
                     ++ objeComponentctBody
                     ++ objectComponentFooter
                     ++ exportDeclaration
             else
                 importDeclaration
-                    ++ snippetHeader
+                    ++ componentHeader
                     ++ classComponentBody
                     ++ classComponentFooter
                     ++ exportDeclaration
