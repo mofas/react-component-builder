@@ -18,7 +18,9 @@ Feel free to fork to create your React component scaffolding generator!
 ### Dependencies
 
 This projects is built by Elm, which is cool and fun.
-If you are not familiar with Elm. You can get more information here [Elm](http://elm-lang.org/) .
+
+
+If you are not familiar with Elm. You can get more information [here](http://elm-lang.org/).
 
 
 If you haven't done so yet, install Elm globally:
