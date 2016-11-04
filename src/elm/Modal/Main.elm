@@ -128,6 +128,10 @@ importLibImmutableJS =
       , label = "Set"
       , enabled = False
       }
+    , { id = "Range"
+      , label = "Range"
+      , enabled = False
+      }
     ]
 
 
@@ -142,7 +146,7 @@ importLibReactRouter =
 
 importLibRedux : TypeOptionList
 importLibRedux =
-    [ { id = "Connect"
+    [ { id = "connect"
       , label = "Connect"
       , enabled = False
       }

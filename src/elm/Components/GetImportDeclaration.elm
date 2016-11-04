@@ -1,5 +1,6 @@
 module Components.GetImportDeclaration exposing (..)
 
+import String
 import Modal.Main exposing (TypeOptionList, isKeyEnabledInOptionList)
 
 
@@ -30,6 +31,32 @@ getImportCssMapMap typeOptionList =
         , classname = (isKeyEnabled "classname")
         , cssModule = (isKeyEnabled "cssModule")
         }
+
+
+importLibCodeGenerator : String -> TypeOptionList -> String
+importLibCodeGenerator lib typeOptionList =
+    let
+        hasUsed =
+            typeOptionList |> List.any (\x -> x.enabled == True)
+
+        importHead =
+            "import { "
+
+        importTail =
+            " } from '" ++ lib ++ "';\n"
+
+        usedMethod =
+            typeOptionList
+                |> List.filter (\x -> x.enabled == True)
+                |> List.map (\x -> x.id)
+                |> String.join (", ")
+    in
+        if hasUsed then
+            importHead
+                ++ usedMethod
+                ++ importTail
+        else
+            ""
 
 
 importCSSCodeGenerator : ImportCssMap -> String
@@ -71,16 +98,16 @@ getImportDeclaration isPure isObjectClass importCSSTypeOptionList importLibImmut
                 importReactDeclaration
 
         importLibImmutableJSCode =
-            ""
+            importLibCodeGenerator "immutable" importLibImmutableJSTypeOptionList
 
         importCSSCode =
             importCSSCodeGenerator importCSSMap
 
         importLibReactRouterCode =
-            ""
+            importLibCodeGenerator "react-router" importLibReactRouterTypeOptionList
 
         importLibReduxTypeCode =
-            ""
+            importLibCodeGenerator "react-redux" importLibReduxTypeOptionList
     in
         code
             ++ importLibImmutableJSCode
