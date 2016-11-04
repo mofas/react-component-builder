@@ -1,4 +1,4 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -7,6 +7,7 @@ import Modal.Main exposing (..)
 import Components.Layout exposing (layout)
 import Components.Panel exposing (..)
 import Components.CodeGenerator exposing (..)
+import Components.GetTemplateCode exposing (getTemplateCode)
 
 
 -- APP
@@ -14,27 +15,37 @@ import Components.CodeGenerator exposing (..)
 
 main : Program Never
 main =
-    Html.App.beginnerProgram
-        { model = appModel
+    Html.App.program
+        { init = init
         , view = view
         , update = update
+        , subscriptions = subscriptions
         }
 
 
+init : ( AppModel, Cmd Msg )
+init =
+    ( model, highLight (getTemplateCode model.options) )
 
--- MODEL
+
+model : AppModel
+model =
+    appModel
 
 
-appModel : AppModel
-appModel =
-    { componetType = componetType
-    , pure = pure
-    , lifeCycle = lifeCycle
-    , importCSS = importCSS
-    , importLibImmutableJS = importLibImmutableJS
-    , importLibReactRouter = importLibReactRouter
-    , importLibRedux = importLibRedux
-    }
+
+-- SUBSCRIPTIONS
+
+
+port highLight : String -> Cmd msg
+
+
+port hightLightedCode : (String -> msg) -> Sub msg
+
+
+subscriptions : AppModel -> Sub Msg
+subscriptions model =
+    hightLightedCode HightLightedCode
 
 
 
@@ -44,16 +55,34 @@ appModel =
 type Msg
     = PanelMsg Components.Panel.Msg
     | CodeGeneratorMsg Components.CodeGenerator.Msg
+    | HightLightedCode String
 
 
-update : Msg -> AppModel -> AppModel
+update : Msg -> AppModel -> ( AppModel, Cmd Msg )
 update msg model =
     case msg of
         PanelMsg subMsg ->
-            Components.Panel.update subMsg model
+            let
+                options =
+                    Components.Panel.update subMsg model.options
+
+                code =
+                    getTemplateCode options
+
+                newModel =
+                    { model | options = options }
+            in
+                ( newModel, highLight code )
+
+        HightLightedCode lighLightedCode ->
+            let
+                newModel =
+                    { model | code = lighLightedCode }
+            in
+                ( newModel, Cmd.none )
 
         CodeGeneratorMsg subMsg ->
-            model
+            ( model, Cmd.none )
 
 
 
@@ -64,7 +93,7 @@ view : AppModel -> Html Msg
 view model =
     layout
         (div [ class "main-content" ]
-            [ Html.App.map PanelMsg (Components.Panel.panel model)
-            , Html.App.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model)
+            [ Html.App.map PanelMsg (Components.Panel.panel model.options)
+            , Html.App.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model.code)
             ]
         )

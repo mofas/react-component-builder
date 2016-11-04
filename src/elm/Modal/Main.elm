@@ -2,6 +2,19 @@ module Modal.Main exposing (..)
 
 
 type alias AppModel =
+    { options : OptionModel
+    , code : String
+    }
+
+
+appModel : AppModel
+appModel =
+    { options = optionModel
+    , code = ""
+    }
+
+
+type alias OptionModel =
     { componetType : TypeOptionList
     , lifeCycle : TypeOptionList
     , pure : TypeOptionList
@@ -9,6 +22,18 @@ type alias AppModel =
     , importLibImmutableJS : TypeOptionList
     , importLibReactRouter : TypeOptionList
     , importLibRedux : TypeOptionList
+    }
+
+
+optionModel : OptionModel
+optionModel =
+    { componetType = componetType
+    , pure = pure
+    , lifeCycle = lifeCycle
+    , importCSS = importCSS
+    , importLibImmutableJS = importLibImmutableJS
+    , importLibReactRouter = importLibReactRouter
+    , importLibRedux = importLibRedux
     }
 
 

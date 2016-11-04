@@ -1,9 +1,8 @@
 module Components.CodeGenerator exposing (..)
 
+import Json.Encode
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Modal.Main exposing (AppModel, TypeOptionList)
-import Components.GetTemplateCode exposing (getTemplateCode)
 
 
 -- Update
@@ -17,11 +16,11 @@ type Msg
 -- View
 
 
-codeGenerator : AppModel -> Html Msg
-codeGenerator model =
+codeGenerator : String -> Html Msg
+codeGenerator code =
     div
         [ class "code-generator-section" ]
         [ pre
-            [ class "code-snippet" ]
-            [ text (getTemplateCode model) ]
+            [ class "code-snippet", property "innerHTML" (Json.Encode.string code) ]
+            []
         ]

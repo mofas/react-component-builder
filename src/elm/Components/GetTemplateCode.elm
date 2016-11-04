@@ -1,6 +1,6 @@
 module Components.GetTemplateCode exposing (..)
 
-import Modal.Main exposing (AppModel, TypeOptionList)
+import Modal.Main exposing (OptionModel, TypeOptionList)
 import Components.GetComponentBodyCode exposing (getComponentBody)
 import Components.GetImportDeclaration exposing (getImportDeclaration)
 
@@ -79,7 +79,7 @@ getComponentHeader isPure isObjectClass =
         classComponentHeader
 
 
-getTemplateCode : AppModel -> String
+getTemplateCode : OptionModel -> String
 getTemplateCode model =
     let
         isObjectClass =

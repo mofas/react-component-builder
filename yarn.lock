@@ -2974,6 +2974,10 @@ pretty-error@^2.0.2:
     renderkid "~2.0.0"
     utila "~0.4"
 
+prismjs@^1.5.1:
+  version "1.5.1"
+  resolved "https://appier.us:4873/prismjs/-/prismjs-1.5.1.tgz#224990100ff6c2a7588d086be1a5ac62e83690f7"
+
 private@^0.1.6, private@~0.1.5:
   version "0.1.6"
   resolved "https://appier.us:4873/private/-/private-0.1.6.tgz#55c6a976d0f9bafb9924851350fe47b9b5fbb7c1"

@@ -1,7 +1,7 @@
 module Components.Panel exposing (..)
 
 import Html.App
-import Modal.Main exposing (AppModel)
+import Modal.Main exposing (OptionModel)
 import Components.ToggleableBtnGroup exposing (toggleableBtnGroup)
 import Components.RadioBtnGroup exposing (radioBtnGroup)
 import Html exposing (..)
@@ -25,7 +25,7 @@ type Msg
 -- update
 
 
-update : Msg -> AppModel -> AppModel
+update : Msg -> OptionModel -> OptionModel
 update msg model =
     case msg of
         RadioComponentTypeBtnGroup subMsg ->
@@ -54,7 +54,7 @@ update msg model =
 -- View
 
 
-panel : AppModel -> Html Msg
+panel : OptionModel -> Html Msg
 panel model =
     div
         [ class "panel-section" ]
