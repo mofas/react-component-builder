@@ -16,7 +16,7 @@ objeComponentPureMixin : String
 objeComponentPureMixin =
     """
 
-mixins: [PureRenderMixin],"""
+    mixins: [PureRenderMixin],"""
 
 
 objectComponentFooter : String
