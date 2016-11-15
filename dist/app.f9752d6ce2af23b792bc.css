@@ -682,7 +682,8 @@ template {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding: 20px;
+  position: relative;
+  height: 100%;
 
 }
 .app-container .code-snippet{
@@ -690,13 +691,24 @@ template {
   -ms-flex: 1;
   flex: 1;
   max-width: 100%;
+  margin: 0;
   height: 100%;
-  padding: 20px;
+  padding: 40px 20px;
   background-color: #272822;
   color: #fff;
   resize: none;
-  border: 1px solid #ddd;
+  border: 5px solid #eee;
+
+}
+.app-container .copy-btn{
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  padding: 12px 32px;
+  background-color: #eee;
+  cursor: pointer;
+  color: #333;
 
 }
 
-/*# sourceMappingURL=app.703a13f08696920232c0.css.map*/
+/*# sourceMappingURL=app.f9752d6ce2af23b792bc.css.map*/
