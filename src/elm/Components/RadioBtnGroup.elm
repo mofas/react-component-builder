@@ -1,6 +1,5 @@
 module Components.RadioBtnGroup exposing (..)
 
-import Html.App
 import Components.RadioBtn exposing (radioBtn)
 import Modal.Main exposing (TypeOptionId, TypeOptionList)
 import Html exposing (..)
@@ -45,7 +44,7 @@ radioBtnGroup : Model -> Html Msg
 radioBtnGroup model =
     let
         btnGroup =
-            List.map (\x -> (Html.App.map (ToggleBtnMsg x.id) (radioBtn x))) model
+            List.map (\x -> (Html.map (ToggleBtnMsg x.id) (radioBtn x))) model
     in
         div
             [ class "btn-group" ]

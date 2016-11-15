@@ -2,7 +2,6 @@ port module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.App
 import Modal.Main exposing (..)
 import Components.Layout exposing (layout)
 import Components.Panel exposing (..)
@@ -13,9 +12,9 @@ import Components.GetTemplateCode exposing (getTemplateCode)
 -- APP
 
 
-main : Program Never
+main : Program Never AppModel Msg
 main =
-    Html.App.program
+    Html.program
         { init = init
         , view = view
         , update = update
@@ -93,7 +92,7 @@ view : AppModel -> Html Msg
 view model =
     layout
         (div [ class "main-content" ]
-            [ Html.App.map PanelMsg (Components.Panel.panel model.options)
-            , Html.App.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model.code)
+            [ Html.map PanelMsg (Components.Panel.panel model.options)
+            , Html.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model.code)
             ]
         )

@@ -1,6 +1,5 @@
 module Components.ToggleableBtnGroup exposing (..)
 
-import Html.App
 import Components.ToggleableBtn exposing (toggleableBtn)
 import Modal.Main exposing (TypeOptionId, TypeOptionList)
 import Html exposing (..)
@@ -45,7 +44,7 @@ toggleableBtnGroup : Model -> Html Msg
 toggleableBtnGroup model =
     let
         btnGroup =
-            List.map (\x -> (Html.App.map (ToggleBtnMsg x.id) (toggleableBtn x))) model
+            List.map (\x -> (Html.map (ToggleBtnMsg x.id) (toggleableBtn x))) model
     in
         div
             [ class "btn-group" ]

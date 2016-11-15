@@ -1,6 +1,5 @@
 module Components.Panel exposing (..)
 
-import Html.App
 import Modal.Main exposing (OptionModel)
 import Components.ToggleableBtnGroup exposing (toggleableBtnGroup)
 import Components.RadioBtnGroup exposing (radioBtnGroup)
@@ -64,7 +63,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Create component by"
                 ]
-            , Html.App.map RadioComponentTypeBtnGroup (radioBtnGroup model.componetType)
+            , Html.map RadioComponentTypeBtnGroup (radioBtnGroup model.componetType)
             ]
         , div
             [ class "type-group" ]
@@ -72,7 +71,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Is component pure?"
                 ]
-            , Html.App.map ToggleablePureBtnGroup (toggleableBtnGroup model.pure)
+            , Html.map ToggleablePureBtnGroup (toggleableBtnGroup model.pure)
             ]
         , div
             [ class "type-group" ]
@@ -80,7 +79,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Life cycle"
                 ]
-            , Html.App.map ToggleableLifeCycleBtnGroup (toggleableBtnGroup model.lifeCycle)
+            , Html.map ToggleableLifeCycleBtnGroup (toggleableBtnGroup model.lifeCycle)
             ]
         , div
             [ class "type-group" ]
@@ -88,7 +87,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Import CSS"
                 ]
-            , Html.App.map ToggleableImportCSSBtnGroup (toggleableBtnGroup model.importCSS)
+            , Html.map ToggleableImportCSSBtnGroup (toggleableBtnGroup model.importCSS)
             ]
         , div
             [ class "type-group" ]
@@ -96,7 +95,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "Immutable JS"
                 ]
-            , Html.App.map ToggleableImportImmutableBtnGroup (toggleableBtnGroup model.importLibImmutableJS)
+            , Html.map ToggleableImportImmutableBtnGroup (toggleableBtnGroup model.importLibImmutableJS)
             ]
         , div
             [ class "type-group" ]
@@ -104,7 +103,7 @@ panel model =
                 [ class "group-title" ]
                 [ text "React Router"
                 ]
-            , Html.App.map ToggleableImportReactRouterBtnGroup (toggleableBtnGroup model.importLibReactRouter)
+            , Html.map ToggleableImportReactRouterBtnGroup (toggleableBtnGroup model.importLibReactRouter)
             ]
         , div
             [ class "type-group" ]
@@ -112,6 +111,6 @@ panel model =
                 [ class "group-title" ]
                 [ text "Redux"
                 ]
-            , Html.App.map ToggleableImportReduxBtnGroup (toggleableBtnGroup model.importLibRedux)
+            , Html.map ToggleableImportReduxBtnGroup (toggleableBtnGroup model.importLibRedux)
             ]
         ]
