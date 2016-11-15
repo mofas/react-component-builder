@@ -77,17 +77,28 @@
   .code-generator-section{
     display: flex;
     flex: 1;
-    padding: 20px;
+    position: relative;
+    height: 100%;
   }
   .code-snippet{
     flex: 1;
     max-width: 100%;
+    margin: 0;
     height: 100%;
-    padding: 20px;
+    padding: 40px 20px;
     background-color: #272822;
     color: #fff;
     resize: none;
-    border: 1px solid #ddd;
+    border: 5px solid #eee;
+  }
+  .copy-btn{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    padding: 12px 32px;
+    background-color: #eee;
+    cursor: pointer;
+    color: #333;
   }
 
 }

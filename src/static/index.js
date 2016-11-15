@@ -13,4 +13,16 @@ const codeHightlight = (code) => {
     app.ports.hightLightedCode.send(hightLightCode);
 }
 
+const copyCode = (id) => {
+    const target = document.getElementById(id);
+    console.log(target, id)
+    target.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      window.alert('Your browser do not support this function')
+    }
+}
+
 app.ports.highLight.subscribe(codeHightlight);
+app.ports.copyCode.subscribe(copyCode);

@@ -4,6 +4,7 @@ module Modal.Main exposing (..)
 type alias AppModel =
     { options : OptionModel
     , code : String
+    , syntaxHighLightedCode : String
     }
 
 
@@ -11,6 +12,7 @@ appModel : AppModel
 appModel =
     { options = optionModel
     , code = ""
+    , syntaxHighLightedCode = ""
     }
 
 

@@ -24,7 +24,14 @@ main =
 
 init : ( AppModel, Cmd Msg )
 init =
-    ( model, highLight (getTemplateCode model.options) )
+    let
+        code =
+            (getTemplateCode model.options)
+
+        initModel =
+            { model | code = code }
+    in
+        ( initModel, highLight code )
 
 
 model : AppModel
@@ -37,6 +44,9 @@ model =
 
 
 port highLight : String -> Cmd msg
+
+
+port copyCode : String -> Cmd msg
 
 
 port hightLightedCode : (String -> msg) -> Sub msg
@@ -69,19 +79,21 @@ update msg model =
                     getTemplateCode options
 
                 newModel =
-                    { model | options = options }
+                    { model | options = options, code = code }
             in
                 ( newModel, highLight code )
 
         HightLightedCode lighLightedCode ->
             let
                 newModel =
-                    { model | code = lighLightedCode }
+                    { model | syntaxHighLightedCode = lighLightedCode }
             in
                 ( newModel, Cmd.none )
 
         CodeGeneratorMsg subMsg ->
-            ( model, Cmd.none )
+            case subMsg of
+                CopyCode id ->
+                    ( model, copyCode id )
 
 
 
@@ -93,6 +105,6 @@ view model =
     layout
         (div [ class "main-content" ]
             [ Html.map PanelMsg (Components.Panel.panel model.options)
-            , Html.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model.code)
+            , Html.map CodeGeneratorMsg (Components.CodeGenerator.codeGenerator model.code model.syntaxHighLightedCode)
             ]
         )
