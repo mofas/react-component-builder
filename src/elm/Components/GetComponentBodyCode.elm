@@ -55,9 +55,9 @@ getDefaultPropCode isObjectClass =
     if isObjectClass then
         """
     defaultProps(){
-      return {
+        return {
 
-      }
+        }
     },
 """
     else

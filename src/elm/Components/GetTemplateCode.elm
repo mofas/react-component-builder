@@ -23,11 +23,11 @@ objectComponentFooter : String
 objectComponentFooter =
     """
     render(){
-      const {props} = this;
+        const {props} = this;
 
-      return (
-        <div></div>
-      );
+        return (
+            <div></div>
+        );
     }
 });"""
 
