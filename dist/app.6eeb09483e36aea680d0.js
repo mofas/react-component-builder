@@ -8558,7 +8558,7 @@ var _mofas$react_component_builder$Components_GetComponentBodyCode$propCodeGener
 		return isObjectClass ? A2(_elm_lang$core$Basics_ops['++'], code, ',\n') : A2(_elm_lang$core$Basics_ops['++'], code, '\n');
 	});
 var _mofas$react_component_builder$Components_GetComponentBodyCode$getDefaultPropCode = function (isObjectClass) {
-	return isObjectClass ? '\n    defaultProps(){\n      return {\n\n      }\n    },\n' : '\n    static defaultProps = {\n\n    }\n';
+	return isObjectClass ? '\n    defaultProps(){\n        return {\n\n        }\n    },\n' : '\n    static defaultProps = {\n\n    }\n';
 };
 var _mofas$react_component_builder$Components_GetComponentBodyCode$getLifeCycleMap = function (typeOptionList) {
 	var isKeyEnabled = _mofas$react_component_builder$Modal_Main$isKeyEnabledInOptionList(typeOptionList);
@@ -8690,7 +8690,7 @@ var _mofas$react_component_builder$Components_GetTemplateCode$exportDeclaration 
 var _mofas$react_component_builder$Components_GetTemplateCode$classComponentFooter = '\n    render(){\n      const {props} = this;\n\n      return (\n        <div></div>\n      );\n    }\n}';
 var _mofas$react_component_builder$Components_GetTemplateCode$pureClassComponentHeader = '\n\nclass ComponentName extends React.PureComponent {';
 var _mofas$react_component_builder$Components_GetTemplateCode$classComponentHeader = '\n\nclass ComponentName extends React.Component {';
-var _mofas$react_component_builder$Components_GetTemplateCode$objectComponentFooter = '\n    render(){\n      const {props} = this;\n\n      return (\n        <div></div>\n      );\n    }\n});';
+var _mofas$react_component_builder$Components_GetTemplateCode$objectComponentFooter = '\n    render(){\n        const {props} = this;\n\n        return (\n            <div></div>\n        );\n    }\n});';
 var _mofas$react_component_builder$Components_GetTemplateCode$objeComponentPureMixin = '\n\n    mixins: [PureRenderMixin],';
 var _mofas$react_component_builder$Components_GetTemplateCode$objectComponentHeader = '\n\nconst ComponentName = React.createClass({';
 var _mofas$react_component_builder$Components_GetTemplateCode$getComponentHeader = F2(
@@ -10191,4 +10191,4 @@ app.ports.copyCode.subscribe(copyCode);
 
 /***/ }
 /******/ ])));
-//# sourceMappingURL=app.f9752d6ce2af23b792bc.js.map
+//# sourceMappingURL=app.6eeb09483e36aea680d0.js.map
