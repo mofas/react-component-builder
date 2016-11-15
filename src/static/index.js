@@ -15,7 +15,6 @@ const codeHightlight = (code) => {
 
 const copyCode = (id) => {
     const target = document.getElementById(id);
-    console.log(target, id)
     target.select();
     try {
       document.execCommand('copy');
